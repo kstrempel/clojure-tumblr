@@ -1,18 +1,7 @@
 (ns tumblr.api
   (:use [clojure.data.json :only [read-str]])
   (:require [clojure.string :as string]
-            [oauth.client :as oauth]
             [clj-http.client :as http]))
-
-(def ^:dynamic *oauth-consumer* "mWVfcnCl5foAnADkGn8qpp6hgrKLZdGbLvZyPVXbBUX8hzMlJU")
-(def ^:dynamic *oauth-consumer-token-secret* "0kc9ZI7WtMn957raxbA0MjcdmRMrSbfmI5t3cKqTm09k4G5CFY")
-
-(def consumer (oauth/make-consumer *oauth-consumer*
-                                   *oauth-consumer-token-secret*
-                                   "http://www.tumblr.com/oauth/request_token"
-                                   "http://www.tumblr.com/oauth/access_token"
-                                   "http://www.tumblr.com/oauth/authorize"
-                                   :hmac-sha1))
 
 (defmacro def-tumblr-method
   [method-name req-method req-url required-params optional-params handler]
@@ -69,16 +58,4 @@
   [:base-hostname]
   [:type :id :tag :limit :offset :reblog_info :notes_info :filter]
   (nil))
-
-
-
-
-
-
-
-
-
-
-
-
 
