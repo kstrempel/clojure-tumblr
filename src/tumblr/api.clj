@@ -1,7 +1,10 @@
 (ns tumblr.api
   (:use [clojure.data.json :only [read-str]])
   (:require [clojure.string :as string]
+            [oauth.client :as oauth]
             [clj-http.client :as http]))
+
+(def ^:dynamic *oauth-consumer* nil)
 
 (defmacro def-tumblr-method
   [method-name req-method req-url required-params optional-params handler]
